@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+    <title>Recipe Share</title>
+</head>
+<body>
+    <Div style="margin: 0 auto; width: 500px; display: flex; justify-content: space-around;" >
+        <div>
+            <div style="display: block;">
+                {% with messages = get_flashed_messages() %}<!-- declare a variable called messages -->
+                    {% if messages %}<!-- check if there are any messages -->
+                        {% for message in messages %}<!-- loop through the messages -->
+                            <p>{{message}}</p><!-- display each message in a paragraph tag -->
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+            {% for info in recipe %}
+            <div>
+                <h2>Edit Recipe!</h2> <a href="/dashboard">Back to recipes</a> <a href="/log/out">Log Out</a>
+            </div>
+            <Form action='/update/{{info.id}}' method='post'>
+                <label>
+                    Name:
+                    <input style="display: block;" type="text" name="name" value="{{info.name}}">
+                </label>
+                <label>
+                    Description:
+                    <textarea style="display: block;" id="" name="description" rows="4" cols="50">{{ info.description }}</textarea><br><br>
+                </label>
+                <label>
+                    Instructions:
+                    <textarea style="display: block;" id="" name="instructions" rows="4" cols="50">{{info.instructions}}</textarea><br><br>
+                </label>
+                <label>
+                    Date Made:
+                    <input style="display: block;" type="date" name="date_made" value="info.date_made">
+                </label>
+                <label>
+                    Under 30 minutes:
+                    <input  type="radio" id="" name="under_30" value="Yes">
+                    <label for="yes">Yes</label>
+                    <input  type="radio" id="" name="under_30" value="No">
+                    <label for="no">No</label>
+                </label>
+                <input type='submit' value='Submit' style="display: block;">
+            </Form>
+            {% endfor %}
+        </div>
+    </Div>
+</body>
+</html>

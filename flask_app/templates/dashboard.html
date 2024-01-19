@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+    <title>Success</title>
+</head>
+<body>
+    <h1>Welcome {{ session.first_name }}</h1>
+    <a href="/add/recipe">+ Create</a> <a href="/log/out">Logout</a>
+    <Form action='/logout' method='post'>
+        <input type='submit' value='Log out' style="display: block;">
+    </Form>
+    <h1>All Posted Recipes</h1>
+    <table style="border: solid red;">
+        <tr>
+            <th>Name</th>
+            <th>Under 30?</th>
+            <th>Posted by</th>
+            <th>Actions</th>
+        </tr>
+        {% for one_recipe in recipes %}
+        <tr>
+            <td>{{one_recipe.name}}</td>
+            <td>{{one_recipe.under_30}} </td>
+            <td> {{one_recipe.user.first_name}}</td>
+            <td>
+                <a href="/view/one/recipe/{{one_recipe.id}}">View Recipe</a> 
+                {% if session_user_id == one_recipe.user.id %}
+                <a href="/edit/{{one_recipe.id}}">Edit</a> 
+                <a href="delete/{{one_recipe.id}}">Delete</a> 
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+</html>

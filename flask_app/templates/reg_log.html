@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+    <title>Document</title>
+</head>
+<body>
+    <Div style="margin: 0 auto; width: 500px; display: flex; justify-content: space-around;" >
+        <div>
+            <div style="display: block;">
+                {% with messages = get_flashed_messages() %}<!-- declare a variable called messages -->
+                    {% if messages %}<!-- check if there are any messages -->
+                        {% for message in messages %}<!-- loop through the messages -->
+                            <p>{{message}}</p><!-- display each message in a paragraph tag -->
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <h2>Register</h2>
+            <Form action='/create' method='post'>
+                <label>
+                    First Name:
+                    <input style="display: block;" type="text" name="first_name" value="">
+                </label>
+                <label>
+                    Last Name:
+                    <input style="display: block;" type="text" name="last_name" value="">
+                </label>
+                <label>
+                    Email:
+                    <input style="display: block;" type="text" name="email" value="">
+                </label>
+                <label>
+                    Password:
+                    <input style="display: block;" type="text" name="password" value="">
+                </label>
+                <label>
+                    Confirm Password:
+                    <input style="display: block;" type="text" name="confirm_password" value="">
+                </label>
+                <input type='submit' value='register' style="display: block;">
+            </Form>
+        </div>
+        <div>
+            <h2>Log In</h2>
+            <Form action='/login' method='post'>
+                <label>
+                    Email:
+                    <input style="display: block;" type="text" name="email" value="">
+                </label>
+                <label>
+                    Password:
+                    <input style="display: block;" type="text" name="password" value="">
+                </label>
+                <input type='submit' value='Log in' style="display: block;">
+            </Form>
+        </div>
+    </Div>
+</body>
+</html>
+
+<!-- Format for adding images -->
+<!-- <img src="{{ url_for('static', filename='images/img.png') }}"> -->

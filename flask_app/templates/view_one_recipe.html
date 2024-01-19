@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+    <title>Recipe Share</title>
+</head>
+<body>
+    {% for info in recipe %}
+    <Div style="display: flex; justify-content: space-between;">
+        <h1>Welcome {{ session.first_name }} </h1>  <a href="/dashboard">Back to recipes</a> <a href="/log/out">Log Out</a>
+        <h1> Recipe Name: {{ info.name }}</h1> 
+        <h1>Posted by: {{info.user.first_name}}</h1>
+    </Div>
+        <p>Description: {{info.description}}</p>
+        <p>Under 30 minutes? {{info.under_30}}</p>
+        <p>Instructions: {{info.instructions}}</p>
+        <p>Date Made: {{info.date_made}}</p>
+    {% endfor %}
+</body>
+</html>
+</html>
