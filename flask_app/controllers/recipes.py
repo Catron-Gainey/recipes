@@ -9,7 +9,7 @@ from flask_app.models.user import User # import entire file, rather than class, 
 @app.route('/create/recipe', methods=['POST'])
 def create_recipe():
     if not Recipe.validate_recipe(request.form):
-        # redirect to the route where the burger form is rendered.
+        # redirect to the appropriate route 
         return redirect('/add/recipe')
     Recipe.save_recipe({
         **request.form,
@@ -36,7 +36,7 @@ def edit(id):
 @app.route('/update/<int:id>',methods=['POST'])
 def update_recipe(id):
     if not Recipe.validate_recipe(request.form):
-        # redirect to the route where the burger form is rendered.
+        # redirect to the appropriate route.
         return redirect(f'/edit/{id}')
     recipe_dict = {
         "name": request.form["name"],

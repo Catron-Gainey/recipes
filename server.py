@@ -7,4 +7,3 @@ if __name__=="__main__":
     # On line six you can change the port number.
 
 # debug needs to be set to False when deployed.
-# We shared a video showing how the information leaked by this feature and help hackers.

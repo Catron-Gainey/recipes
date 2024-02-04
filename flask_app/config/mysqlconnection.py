@@ -1,8 +1,3 @@
-# Change nothing in this file.
-# Do not delete the comments
-# Use the comments to help with trouble shooting
-    # Bool object not iterable? Read below, where do you find a bool/boolean?
-
 
 # a cursor is the object we use to interact with the database
 import pymysql.cursors
